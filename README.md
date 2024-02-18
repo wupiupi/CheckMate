@@ -19,6 +19,10 @@ Whether you're a student, professional, or simply someone who wants to keep trac
 ## Database: 
 **Realm** 📊
 
+## Technologies:
+- UIKit
+- Realm
+
 ## Contact
 If you have any suggestions, bug reports, or feature requests, please create an issue in this repository 💡
 

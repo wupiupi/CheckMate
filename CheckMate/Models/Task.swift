@@ -8,7 +8,7 @@
 import RealmSwift
 import Foundation
 
-final class TaskList: Object {
+final class TaskTitle: Object {
     @Persisted var title = ""
     @Persisted var data = Date()
     @Persisted var tasks: List<Task>

@@ -13,6 +13,8 @@
 		A04A22992B82683600261FD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A04A22972B82683600261FD0 /* Main.storyboard */; };
 		A04A229B2B82683600261FD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A04A229A2B82683600261FD0 /* Assets.xcassets */; };
 		A04A229E2B82683600261FD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A04A229C2B82683600261FD0 /* LaunchScreen.storyboard */; };
+		A04A22AA2B82692100261FD0 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A04A22A92B82692100261FD0 /* Realm */; };
+		A04A22AC2B82692100261FD0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A04A22AB2B82692100261FD0 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A04A22AC2B82692100261FD0 /* RealmSwift in Frameworks */,
+				A04A22AA2B82692100261FD0 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +60,39 @@
 		A04A22902B82683600261FD0 /* CheckMate */ = {
 			isa = PBXGroup;
 			children = (
-				A04A22912B82683600261FD0 /* AppDelegate.swift */,
-				A04A22932B82683600261FD0 /* SceneDelegate.swift */,
-				A04A22952B82683600261FD0 /* ViewController.swift */,
-				A04A22972B82683600261FD0 /* Main.storyboard */,
+				A04A22A52B82684A00261FD0 /* Supporting */,
+				A04A22A62B82687000261FD0 /* ViewControllers */,
+				A04A22A72B82687700261FD0 /* Storyboards */,
 				A04A229A2B82683600261FD0 /* Assets.xcassets */,
-				A04A229C2B82683600261FD0 /* LaunchScreen.storyboard */,
-				A04A229F2B82683600261FD0 /* Info.plist */,
 			);
 			path = CheckMate;
+			sourceTree = "<group>";
+		};
+		A04A22A52B82684A00261FD0 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				A04A22912B82683600261FD0 /* AppDelegate.swift */,
+				A04A22932B82683600261FD0 /* SceneDelegate.swift */,
+				A04A229F2B82683600261FD0 /* Info.plist */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
+		A04A22A62B82687000261FD0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A04A22952B82683600261FD0 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A04A22A72B82687700261FD0 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A04A22972B82683600261FD0 /* Main.storyboard */,
+				A04A229C2B82683600261FD0 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +111,10 @@
 			dependencies = (
 			);
 			name = CheckMate;
+			packageProductDependencies = (
+				A04A22A92B82692100261FD0 /* Realm */,
+				A04A22AB2B82692100261FD0 /* RealmSwift */,
+			);
 			productName = CheckMate;
 			productReference = A04A228E2B82683600261FD0 /* CheckMate.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +143,9 @@
 				Base,
 			);
 			mainGroup = A04A22852B82683500261FD0;
+			packageReferences = (
+				A04A22A82B82692100261FD0 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = A04A228F2B82683600261FD0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -292,13 +327,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KSKFLS4ZH5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CheckMate/Info.plist;
+				INFOPLIST_FILE = CheckMate/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,9 +342,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = wupiupi.CheckMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -319,13 +358,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KSKFLS4ZH5;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CheckMate/Info.plist;
+				INFOPLIST_FILE = CheckMate/Supporting/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -333,9 +373,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = wupiupi.CheckMate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -361,6 +404,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A04A22A82B82692100261FD0 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A04A22A92B82692100261FD0 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A04A22A82B82692100261FD0 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		A04A22AB2B82692100261FD0 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A04A22A82B82692100261FD0 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A04A22862B82683500261FD0 /* Project object */;
 }

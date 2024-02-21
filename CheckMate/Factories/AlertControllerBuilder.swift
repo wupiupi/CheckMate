@@ -26,11 +26,19 @@ final class AlertControllerBuilder {
         return self
     }
     
-    func addAction(title: String, style: UIAlertAction.Style) -> AlertControllerBuilder {
+    func addAction(
+        title: String,
+        style: UIAlertAction.Style,
+        handler: ((String, String) -> Void)? = nil
+    ) -> AlertControllerBuilder {
         let action = UIAlertAction(
             title: title,
-            style: style) { action in
+            style: style) { [unowned alertController] _ in
+                guard let title = alertController.textFields?.first?.text,
+                      !title.isEmpty else { return }
                 
+                let note = alertController.textFields?.last?.text
+                handler?(title, note ?? "")
             }
         alertController.addAction(action)
         

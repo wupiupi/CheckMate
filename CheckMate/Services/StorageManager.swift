@@ -28,9 +28,12 @@ final class StorageManager {
     }
     
     // MARK: - CRUD
-    func save(taskTitle: TaskTitle) {
+    func save(title: String, handler: (TaskTitle) -> Void) {
         write {
+            let taskTitle = TaskTitle()
+            taskTitle.title = title
             realm.add(taskTitle)
+            handler(taskTitle)
         }
     }
     

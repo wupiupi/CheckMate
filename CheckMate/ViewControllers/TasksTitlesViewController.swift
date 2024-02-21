@@ -51,8 +51,22 @@ private extension TasksTitlesViewController {
         )
         
         let alertController = alertBuilder
-            .addTextField(text: "", placeholder: "Type something...")
-            .addAction(title: "Save", style: .default)
+            .addTextField(text: "", placeholder: "Type a name for your task:")
+        
+            .addAction(title: "Save",
+                       style: .default,
+                       handler: {
+                [unowned self] title,
+                _ in
+                storageManager.save(title: title) { taskTitle in
+                    let indexPath = IndexPath(
+                        row: taskTitles.count != 0 ? taskTitles.count - 1 : 0,
+                        section: 0
+                    )
+                    tableView.insertRows(at: [indexPath], with: .automatic)
+                }
+            })
+        
             .addAction(title: "Cancel", style: .destructive)
             .build()
         

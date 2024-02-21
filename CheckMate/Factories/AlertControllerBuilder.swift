@@ -18,10 +18,10 @@ final class AlertControllerBuilder {
         )
     }
     
-    func addTextField(text: String?, placeholder: String?) -> AlertControllerBuilder {
+    func addTextField(placeholder: String, text: String?) -> AlertControllerBuilder {
         alertController.addTextField { textField in
-            textField.text = text
             textField.placeholder = placeholder
+            textField.text = text
         }
         return self
     }

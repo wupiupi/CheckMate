@@ -18,6 +18,7 @@ final class TasksTitlesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         taskTitles = storageManager.fetchTasksTitles(TaskTitle.self)
+            .sorted(byKeyPath: "date", ascending: false)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
@@ -25,6 +26,16 @@ final class TasksTitlesViewController: UITableViewController {
             action: #selector(addButtonDidTapped)
         )
     }
+    
+    // MARK: - IB Actions
+    @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
+        taskTitles = sender.selectedSegmentIndex == 0
+        ? taskTitles.sorted(byKeyPath: "date", ascending: false)
+        : taskTitles.sorted(byKeyPath: "title", ascending: true)
+        
+        tableView.reloadData()
+    }
+    
     
     @objc func addButtonDidTapped() {
         showAlertController()

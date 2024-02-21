@@ -17,14 +17,16 @@ final class TasksTitlesViewController: UITableViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        taskTitles = storageManager.fetchTasksTitles(TaskTitle.self)
-            .sorted(byKeyPath: "date", ascending: false)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .add,
             target: self,
             action: #selector(addButtonDidTapped)
         )
+        navigationItem.leftBarButtonItem = editButtonItem
+        
+        taskTitles = storageManager.fetchTasksTitles(TaskTitle.self)
+            .sorted(byKeyPath: "date", ascending: false)
     }
     
     // MARK: - IB Actions
@@ -36,41 +38,8 @@ final class TasksTitlesViewController: UITableViewController {
         tableView.reloadData()
     }
     
-    
     @objc func addButtonDidTapped() {
         showAlertController()
-    }
-}
-
-// MARK: - Private Methods
-private extension TasksTitlesViewController {
-    func showAlertController() {
-        let alertBuilder = AlertControllerBuilder(
-            title: "New task",
-            message: "What do you wanna do?"
-        )
-        
-        let alertController = alertBuilder
-            .addTextField(text: "", placeholder: "Type a name for your task:")
-        
-            .addAction(title: "Save",
-                       style: .default,
-                       handler: {
-                [unowned self] title,
-                _ in
-                storageManager.save(title: title) { taskTitle in
-                    let indexPath = IndexPath(
-                        row: taskTitles.count != 0 ? taskTitles.count - 1 : 0,
-                        section: 0
-                    )
-                    tableView.insertRows(at: [indexPath], with: .automatic)
-                }
-            })
-        
-            .addAction(title: "Cancel", style: .destructive)
-            .build()
-        
-        present(alertController, animated: true)
     }
 }
 
@@ -113,16 +82,17 @@ extension TasksTitlesViewController {
         
         let doneAction = UIContextualAction(
             style: .normal,
-            title: "Done") { _, _, _ in
-                // TODO: - Done method in the StorageManager
-                print("DEBUG_PRINT: done button did tapped")
+            title: "Done") { [unowned self] _, _, _ in
+                storageManager.done(for: taskTitle)
+                tableView.reloadRows(at: [indexPath], with: .automatic)
             }
         
         let editAction = UIContextualAction(
             style: .normal,
             title: "Edit") { [unowned self] _, _, _ in
-                showAlertController()
-                storageManager.update(oldValue: taskTitle, newTitle: "asd")
+                showAlertController(withTitle: taskTitle) {
+                    tableView.reloadRows(at: [indexPath], with: .automatic)
+                }
             }
         
         let deleteAction = UIContextualAction(
@@ -142,5 +112,49 @@ extension TasksTitlesViewController {
                 deleteAction
             ]
         )
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - AlertController
+private extension TasksTitlesViewController {
+    func showAlertController(withTitle taskTitle: TaskTitle? = nil, completion: (() -> Void)? = nil) {
+        let alertBuilder = AlertControllerBuilder(
+            title: taskTitle == nil ? "New task" : "Edit task title",
+            message: "Set a title for a new task:"
+        )
+        
+        let alertController = alertBuilder
+            .addTextField(placeholder: "Name your task:", text: taskTitle?.title)
+        
+            .addAction(
+                title: taskTitle == nil ? "Save" : "Edit",
+                style: .default,
+                handler: {
+                    [unowned self] newTitle,
+                    _ in
+                    if let taskTitle,
+                       let completion {
+                        storageManager.update(oldValue: taskTitle, newTitle: newTitle)
+                        completion()
+                        return
+                    }
+                    
+                    storageManager.save(title: newTitle) { taskTitle in
+                        let indexPath = IndexPath(
+                            row: taskTitles.firstIndex(of: taskTitle) ?? 0,
+                            section: 0
+                        )
+                        tableView.insertRows(at: [indexPath], with: .automatic)
+                    }
+                })
+        
+            .addAction(title: "Cancel", style: .destructive)
+            .build()
+        
+        present(alertController, animated: true)
     }
 }

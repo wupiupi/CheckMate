@@ -77,3 +77,45 @@ extension TasksTitlesViewController {
         return cell
     }
 }
+
+// MARK: - UITableViewDelegate
+extension TasksTitlesViewController {
+    override func tableView(
+        _ tableView: UITableView,
+        trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath
+    ) -> UISwipeActionsConfiguration? {
+        let taskTitle = taskTitles[indexPath.row]
+        
+        let doneAction = UIContextualAction(
+            style: .normal,
+            title: "Done") { _, _, _ in
+                // TODO: - Done method in the StorageManager
+                print("DEBUG_PRINT: done button did tapped")
+            }
+        
+        let editAction = UIContextualAction(
+            style: .normal,
+            title: "Edit") { [unowned self] _, _, _ in
+                showAlertController()
+                storageManager.update(oldValue: taskTitle, newTitle: "asd")
+            }
+        
+        let deleteAction = UIContextualAction(
+            style: .destructive,
+            title: "Delete") { [unowned storageManager] _, _, _ in
+                storageManager.delete(taskTitle: taskTitle)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        
+        doneAction.backgroundColor = .systemGreen
+        editAction.backgroundColor = .systemOrange
+        
+        return UISwipeActionsConfiguration(
+            actions: [
+                doneAction,
+                editAction,
+                deleteAction
+            ]
+        )
+    }
+}

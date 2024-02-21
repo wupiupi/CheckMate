@@ -62,9 +62,7 @@
                             <outlet property="delegate" destination="fuX-7E-nci" id="6E5-RM-Mk2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Tasks" id="BIz-qn-gE3">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="Uvg-K1-VZd"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Tasks" id="BIz-qn-gE3"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11x-K4-y63" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

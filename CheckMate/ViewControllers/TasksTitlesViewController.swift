@@ -11,8 +11,8 @@ import RealmSwift
 final class TasksTitlesViewController: UITableViewController {
     
     // MARK: - Private properties
-    private let storageManager = StorageManager.shared
     private var taskTitles: Results<TaskTitle>!
+    private let storageManager = StorageManager.shared
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -27,6 +27,18 @@ final class TasksTitlesViewController: UITableViewController {
         
         taskTitles = storageManager.fetchTasksTitles(TaskTitle.self)
             .sorted(byKeyPath: "date", ascending: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let tasksVC = segue.destination as? TasksViewController,
+              let indexPath = tableView.indexPathForSelectedRow else { return }
+        tasksVC.taskTitle = taskTitles[indexPath.row]
     }
     
     // MARK: - IB Actions

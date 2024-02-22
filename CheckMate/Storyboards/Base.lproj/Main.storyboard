@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,7 +51,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Ls2-d5-SnM" kind="show" id="xYt-h0-eA9"/>
+                                    <segue destination="9eB-C9-H7Z" kind="show" id="HIX-jU-Uhz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -68,21 +67,40 @@
             </objects>
             <point key="canvasLocation" x="682" y="-77"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="lf9-Cs-hbP">
+        <!--Tasks View Controller-->
+        <scene sceneID="Zyz-WC-54X">
             <objects>
-                <viewController id="Ls2-d5-SnM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="wI2-Vu-grA">
+                <tableViewController id="9eB-C9-H7Z" customClass="TasksViewController" customModule="CheckMate" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="foI-xA-1cz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="frL-g4-BWf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="fqY-Vj-qds"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tpw-bL-V6N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" id="1P8-va-yv7">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1P8-va-yv7" id="RaY-Dv-pMJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="9eB-C9-H7Z" id="z2w-WJ-DGs"/>
+                            <outlet property="delegate" destination="9eB-C9-H7Z" id="Hkm-8o-deD"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="H5a-BA-SZt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JZv-ue-yqe">
+                            <connections>
+                                <action selector="addButtonDidTapped:" destination="9eB-C9-H7Z" id="0xq-mh-Ugd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0b2-XS-DDG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1508" y="-78"/>
+            <point key="canvasLocation" x="1460" y="-77"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="YRK-fk-72f">

@@ -74,10 +74,17 @@ extension TasksTitlesViewController {
         )
         
         let taskTitle = taskTitles[indexPath.row]
+        let currentTasks = taskTitle.tasks.filter("isComplete = false")
         
         var content = cell.defaultContentConfiguration()
         content.text = taskTitle.title
-        content.secondaryText = taskTitle.tasks.count.formatted()
+        
+        if currentTasks.count == 0 {
+            cell.accessoryType = .checkmark
+        } else {
+            content.secondaryText = currentTasks.count.formatted()
+            cell.accessoryType = .none
+        }
         
         cell.contentConfiguration = content
         return cell

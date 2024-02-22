@@ -19,6 +19,7 @@
 		A04A22AC2B82692100261FD0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A04A22AB2B82692100261FD0 /* RealmSwift */; };
 		A07663352B84DE8600B79D7E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = A07663342B84DE8600B79D7E /* Realm */; };
 		A07663372B84DE8600B79D7E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A07663362B84DE8600B79D7E /* RealmSwift */; };
+		A0E3FC972B8667F600EF5B16 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E3FC962B8667F600EF5B16 /* TasksViewController.swift */; };
 		A0F0DB662B855B74000E3D13 /* AlertControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F0DB652B855B74000E3D13 /* AlertControllerBuilder.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		A04A229A2B82683600261FD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A04A229D2B82683600261FD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A04A229F2B82683600261FD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0E3FC962B8667F600EF5B16 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		A0F0DB652B855B74000E3D13 /* AlertControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				A04A22952B82683600261FD0 /* TasksTitlesViewController.swift */,
+				A0E3FC962B8667F600EF5B16 /* TasksViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				A04A22962B82683600261FD0 /* TasksTitlesViewController.swift in Sources */,
 				A04A22922B82683600261FD0 /* AppDelegate.swift in Sources */,
 				A025F6062B8272C300026C2F /* Task.swift in Sources */,
+				A0E3FC972B8667F600EF5B16 /* TasksViewController.swift in Sources */,
 				A04A22942B82683600261FD0 /* SceneDelegate.swift in Sources */,
 				A0F0DB662B855B74000E3D13 /* AlertControllerBuilder.swift in Sources */,
 				A025F6032B82701000026C2F /* StorageManager.swift in Sources */,

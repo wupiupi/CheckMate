@@ -27,7 +27,7 @@ final class StorageManager {
         }
     }
     
-    // MARK: - CRUD
+    // MARK: - CRUD for TaskTitles
     func save(title: String, handler: (TaskTitle) -> Void) {
         write {
             let taskTitle = TaskTitle()
@@ -49,7 +49,16 @@ final class StorageManager {
     
     func delete(taskTitle: TaskTitle) {
         write {
+            realm.delete(taskTitle.tasks)
             realm.delete(taskTitle)
+        }
+    }
+    
+    func done(for taskTitle: TaskTitle) {
+        write {
+            taskTitle.tasks.forEach { task in
+                task.isComplete = true
+            }
         }
     }
     
@@ -60,6 +69,34 @@ final class StorageManager {
             }
         } catch {
             print(error)
+        }
+    }
+    
+    // MARK: - Tasks
+    func saveTask(title: String, note: String?, toTaskTitle taskTitle: TaskTitle, completion: (Task) -> Void) {
+        write {
+            let task = Task(value: [title, note])
+            taskTitle.tasks.append(task)
+            completion(task)
+        }
+    }
+    
+    func updateTask(_ task: Task, withTitle title: String, andNote note: String) {
+        write {
+            task.title = title
+            task.note = note
+        }
+    }
+    
+    func deleteTask(_ task: Task) {
+        write {
+            realm.delete(task)
+        }
+    }
+    
+    func done(forTask task: Task) {
+        write {
+            task.isComplete.toggle()
         }
     }
 }
